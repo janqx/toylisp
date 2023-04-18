@@ -1,0 +1,28 @@
+(defun intersect (a b)
+  (if (or (isnull a) (isnull b))
+    NIL
+    (if (== (car a) (car b))
+      (cons (car a) (intersect (cdr a) (cdr b)))
+      (intersect (cdr a) b)
+    )
+  )
+)
+
+(defun union (a b)
+  (if (and (isnull a) (isnull b))
+    NIL
+    (if (isnull a)
+      (cons (car b) (union NIL (cdr b)))
+      (if (isnull b)
+        (cons (car a) (union (cdr a) NIL))
+        (if (== (car a) (car b))
+          (cons (car a) (union (cdr a) (cdr b)))
+          (cons (car a) (union (cdr a) b))
+        )
+      )
+    )
+  )
+)
+
+(println (intersect '(1 2 3) '(1 3 4 5)))
+(println (union '(1 2 3) '(1 3 4 5)))
