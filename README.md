@@ -9,7 +9,8 @@ example:
       ((< n 3) 1)
       (t (+ (fib (- n 1)) (fib (- n 2)))))))
 
-(println (fib 10))
+(for (set i 1) (<= i 10) (++ i)
+  (print (fib i)))
 
-; output: 55
+; output: 1 1 2 3 5 8 13 21 34 55 NIL
 ```
